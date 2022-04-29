@@ -15,7 +15,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int categoryId;
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "category",cascade = CascadeType.ALL)
-    private List<Candy> candyList;
+    private List<Candy> candyList = new ArrayList<>();
     private String name;
     private String description;
 
@@ -63,7 +63,6 @@ public class Category {
     public String toString() {
         return "Category{" +
                 "categoryId=" + categoryId +
-                ", candyList=" + candyList +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';

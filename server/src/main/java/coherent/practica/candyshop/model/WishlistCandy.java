@@ -1,6 +1,8 @@
 package coherent.practica.candyshop.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,9 +12,11 @@ public class WishlistCandy implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int WishlistCandyId;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "wishlist_id")
     private Wishlist wishlist;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "candy_id")
     private Candy candy;

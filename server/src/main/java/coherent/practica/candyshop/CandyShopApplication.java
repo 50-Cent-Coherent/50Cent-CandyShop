@@ -27,6 +27,10 @@ public class CandyShopApplication {
     private OrderCandyRepository orderCandyRepository;
     @Autowired
     private WishlistCandyRepository wishlistCandyRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private UserDataRepository userDataRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(CandyShopApplication.class, args);
@@ -41,6 +45,9 @@ public class CandyShopApplication {
         orderRepository.deleteAll();
         orderCandyRepository.deleteAll();
         wishlistCandyRepository.deleteAll();
+        userDataRepository.deleteAll();
+        userRepository.deleteAll();
+
 
 
         Category testCategory = new Category("chocolate","belgian chocolate");
@@ -49,22 +56,29 @@ public class CandyShopApplication {
         Candy testCandy1 = new Candy(testCategory,"Milka White","Milka Chocolate","url",5,5);
         candyRepository.save(testCandy);
         candyRepository.save(testCandy1);
+        //System.out.println(candyRepository.findAll());
+
+        User testUser = new User("password","admin");
+        UserData testUserData = new UserData("tudor","anita","gmail","address","0726",testUser);
+        userRepository.save(testUser);
+        userDataRepository.save(testUserData);
 
 
-
-        Wishlist testWishlist = new Wishlist("mywishlist");
-        Wishlist testWishlist1 = new Wishlist("mywishlist1");
+        Wishlist testWishlist = new Wishlist("mywishlist",testUser);
         wishlistRepository.save(testWishlist);
-        wishlistRepository.save(testWishlist1);
         WishlistCandy wishlistCandy = new WishlistCandy(testWishlist,testCandy,5);
         wishlistCandyRepository.save(wishlistCandy);
 
 
         Calendar calendar = Calendar.getInstance();
-        Order testOrder = new Order(new Timestamp(calendar.getTimeInMillis()));
+        Order testOrder = new Order(new Timestamp(calendar.getTimeInMillis()),testUserData);
         orderRepository.save(testOrder);
         OrderCandy orderCandy = new OrderCandy(testOrder,testCandy,5);
         orderCandyRepository.save(orderCandy);
+
+
+
+
 
     }
 

@@ -1,6 +1,7 @@
 package coherent.practica.candyshop.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 import javax.persistence.*;
@@ -13,9 +14,11 @@ public class OrderCandy implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int OrderCandyId;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "candy_id")
     private Candy candy;
