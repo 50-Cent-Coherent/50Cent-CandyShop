@@ -1,14 +1,19 @@
 package coherent.practica.candyshop.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -28,39 +33,4 @@ public class Order {
         this.userData = userData;
     }
 
-    public Order() {
-
-    }
-
-    public UserData getUserData() {
-        return userData;
-    }
-
-    public void setUserData(UserData userData) {
-        this.userData = userData;
-    }
-
-    public List<OrderCandy> getCandyAssoc() {
-        return CandyAssoc;
-    }
-
-    public void setCandyAssoc(List<OrderCandy> candyAssoc) {
-        CandyAssoc = candyAssoc;
-    }
-
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
-    public Timestamp getDate() {
-        return date;
-    }
-
-    public void setDate(Timestamp date) {
-        this.date = date;
-    }
 }

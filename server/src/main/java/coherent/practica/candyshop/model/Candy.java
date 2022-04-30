@@ -3,13 +3,17 @@ package coherent.practica.candyshop.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jdk.dynalink.linker.LinkerServices;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "candy")
 public class Candy {
@@ -38,82 +42,6 @@ public class Candy {
         this.quantity = quantity;
         this.price = price;
 
-    }
-
-    public Candy() {
-
-    }
-
-    public List<OrderCandy> getOrderAssoc() {
-        return OrderAssoc;
-    }
-
-    public void setOrderAssoc(List<OrderCandy> orderAssoc) {
-        OrderAssoc = orderAssoc;
-    }
-
-    public List<WishlistCandy> getWishlistAssoc() {
-        return WishlistAssoc;
-    }
-
-    public void setWishlistAssoc(List<WishlistCandy> wishlistAssoc) {
-        WishlistAssoc = wishlistAssoc;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public int getCandyId() {
-        return candyId;
-    }
-
-    public void setCandyId(int candyId) {
-        this.candyId = candyId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     @Override
