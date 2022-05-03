@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//TODO: Maybe add @RequestMapping("/candies") as an overall class annotation to avoid reusing /candies on each request
 @RestController
 public class CandyController {
 

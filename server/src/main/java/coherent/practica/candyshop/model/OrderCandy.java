@@ -2,11 +2,17 @@ package coherent.practica.candyshop.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "orders_candies")
 public class OrderCandy implements Serializable {
@@ -31,39 +37,4 @@ public class OrderCandy implements Serializable {
         this.quantity = quantity;
     }
 
-    public OrderCandy() {
-
-    }
-
-    public int getOrderCandyId() {
-        return OrderCandyId;
-    }
-
-    public void setOrderCandyId(int orderCandyId) {
-        OrderCandyId = orderCandyId;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Candy getCandy() {
-        return candy;
-    }
-
-    public void setCandy(Candy candy) {
-        this.candy = candy;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }

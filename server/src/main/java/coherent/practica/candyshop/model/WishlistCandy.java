@@ -2,10 +2,16 @@ package coherent.practica.candyshop.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "wishlist_candies")
 public class WishlistCandy implements Serializable {
@@ -29,39 +35,4 @@ public class WishlistCandy implements Serializable {
         this.quantity = quantity;
     }
 
-    public WishlistCandy() {
-
-    }
-
-    public int getWishlistCandyId() {
-        return WishlistCandyId;
-    }
-
-    public void setWishlistCandyId(int wishlistCandyId) {
-        WishlistCandyId = wishlistCandyId;
-    }
-
-    public Wishlist getWishlist() {
-        return wishlist;
-    }
-
-    public void setWishlist(Wishlist wishlist) {
-        this.wishlist = wishlist;
-    }
-
-    public Candy getCandy() {
-        return candy;
-    }
-
-    public void setCandy(Candy candy) {
-        this.candy = candy;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }
