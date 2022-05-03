@@ -1,12 +1,17 @@
 package coherent.practica.candyshop.model;
 
-
-
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "category")
 public class Category {
@@ -21,41 +26,6 @@ public class Category {
 
     public Category( String name, String description){
         this.name = name;
-        this.description = description;
-    }
-
-    public Category() {
-    }
-
-    public List<Candy> getCandyList() {
-        return candyList;
-    }
-
-    public void setCandyList(List<Candy> candyList) {
-        this.candyList = candyList;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
     }
 

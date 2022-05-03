@@ -1,11 +1,17 @@
 package coherent.practica.candyshop.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "wishlist")
 public class Wishlist {
@@ -26,39 +32,4 @@ public class Wishlist {
         this.user = user;
     }
 
-    public Wishlist() {
-
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public int getWishlistId() {
-        return wishlistId;
-    }
-
-    public void setWishlistId(int wishlistId) {
-        this.wishlistId = wishlistId;
-    }
-
-    public List<WishlistCandy> getCandyAssoc() {
-        return CandyAssoc;
-    }
-
-    public void setCandyAssoc(List<WishlistCandy> candyAssoc) {
-        CandyAssoc = candyAssoc;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
