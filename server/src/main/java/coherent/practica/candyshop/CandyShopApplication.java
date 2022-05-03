@@ -58,16 +58,24 @@ public class CandyShopApplication {
         candyRepository.save(testCandy1);
         //System.out.println(candyRepository.findAll());
 
-        User testUser = new User("password","admin");
+        User testUser = new User("password","userame1","admin");
         UserData testUserData = new UserData("tudor","anita","gmail","address","0726",testUser);
         userRepository.save(testUser);
         userDataRepository.save(testUserData);
+        User testUser1 = new User("password","username2","admin1");
+        UserData testUserData1 = new UserData("tudor1","anita","gmail","address","0726",testUser1);
+        userRepository.save(testUser1);
+        userDataRepository.save(testUserData1);
 
 
         Wishlist testWishlist = new Wishlist("mywishlist",testUser);
         wishlistRepository.save(testWishlist);
         WishlistCandy wishlistCandy = new WishlistCandy(testWishlist,testCandy,5);
         wishlistCandyRepository.save(wishlistCandy);
+        Wishlist testWishlist1 = new Wishlist("mywishlist1",testUser1);
+        wishlistRepository.save(testWishlist1);
+        WishlistCandy wishlistCandy1 = new WishlistCandy(testWishlist1,testCandy,5);
+        wishlistCandyRepository.save(wishlistCandy1);
 
 
         Calendar calendar = Calendar.getInstance();

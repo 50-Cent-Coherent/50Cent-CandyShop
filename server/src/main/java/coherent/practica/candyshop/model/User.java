@@ -16,6 +16,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
+    private String username;
     private String password;
     private String role;
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
@@ -23,7 +24,8 @@ public class User {
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     private Wishlist wishlist;
 
-    public User(String password, String role) {
+    public User(String password, String username,String role) {
+        this.username = username;
         this.password = password;
         this.role = role;
     }
