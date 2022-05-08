@@ -7,6 +7,7 @@ import coherent.practica.candyshop.model.CustomUserDetails;
 import coherent.practica.candyshop.service.CandyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
@@ -23,6 +24,7 @@ public class CandyController {
 
     @GetMapping()
     @ResponseBody
+//    @PreAuthorize("isAuthenticated() and hasRole('USER2')")
     public List<Candy> showCandies(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return candyService.getAllCandies();

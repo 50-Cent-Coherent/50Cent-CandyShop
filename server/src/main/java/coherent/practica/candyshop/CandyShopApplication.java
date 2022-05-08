@@ -58,15 +58,15 @@ public class CandyShopApplication {
         candyRepository.save(testCandy1);
         //System.out.println(candyRepository.findAll());
 
-        User testUser = new User("password","userame1","admin");
+        User testUser = new User("$2a$10$ad8yto4HdK8MV0YvVzY03eriBnU3eR9YGlv27LqshZcPcp56FDYFC","Antonio","ROLE_ADMIN");
         UserData testUserData = new UserData("tudor","anita","gmail","address","0726",testUser);
         userRepository.save(testUser);
         userDataRepository.save(testUserData);
-        User testUser1 = new User("password","username2","admin1");
+        User testUser1 = new User("$2a$10$ad8yto4HdK8MV0YvVzY03eriBnU3eR9YGlv27LqshZcPcp56FDYFC","Mihai","ROLE_ADMIN");
         UserData testUserData1 = new UserData("tudor1","anita","gmail","address","0726",testUser1);
         userRepository.save(testUser1);
         userDataRepository.save(testUserData1);
-        User testUser2 = new User("password","RealAdmin","ROLE_ADMIN");
+        User testUser2 = new User("$2a$10$ad8yto4HdK8MV0YvVzY03eriBnU3eR9YGlv27LqshZcPcp56FDYFC","RealAdmin","ROLE_ADMIN");
         UserData testUserData2 = new UserData("tudor1","anita","gmail","address","0726",testUser2);
         userRepository.save(testUser2);
         userDataRepository.save(testUserData2);
