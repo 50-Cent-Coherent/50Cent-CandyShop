@@ -6,8 +6,12 @@ import coherent.practica.candyshop.exception.CandyNotFoundException;
 import coherent.practica.candyshop.exception.CategoryNotFoundException;
 import coherent.practica.candyshop.model.Candy;
 import coherent.practica.candyshop.model.Category;
+import coherent.practica.candyshop.model.Order;
+import coherent.practica.candyshop.model.OrderCandy;
 import coherent.practica.candyshop.repository.CandyRepository;
 import coherent.practica.candyshop.repository.CategoryRepository;
+import coherent.practica.candyshop.repository.OrderCandyRepository;
+import coherent.practica.candyshop.repository.WishlistCandyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,6 +25,10 @@ public class CandyService {
     CandyRepository candyRepository;
     @Autowired
     CategoryRepository categoryRepository;
+    @Autowired
+    OrderCandyRepository orderCandyRepository;
+    @Autowired
+    WishlistCandyRepository wishlistCandyRepository;
 
     public List<Candy> getAllCandies(){
         return candyRepository.findAll();
@@ -35,7 +43,7 @@ public class CandyService {
         candyRepository.findByName(candy.getName()).ifPresent(s -> {
             throw new CandyAlreadyAddedException(candy.getName());
         });
-        //System.out.println(candy.getCategory());
+
         Category myCategory =categoryRepository.findByName(categoryName).orElseThrow(
                 () -> new CategoryNotFoundException(categoryName));
 
@@ -45,11 +53,11 @@ public class CandyService {
 
     public ResponseEntity<String> deleteCandy(String candyName) {
 
-        Candy candy = candyRepository.findByName(candyName).orElseThrow(
+        Candy candy=candyRepository.findByName(candyName).orElseThrow(
                 () -> new CandyNotFoundException(candyName));
-
-        candyRepository.delete(candy);
-
+        orderCandyRepository.deleteByCandy(candy);
+        wishlistCandyRepository.deleteByCandy(candy);
+        candyRepository.deleteByName(candyName);
         return ResponseEntity.ok()
                 .body("Candy with name: " + candyName + " deleted successfully.");
     }

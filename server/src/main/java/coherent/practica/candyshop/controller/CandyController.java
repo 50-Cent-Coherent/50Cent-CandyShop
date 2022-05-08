@@ -6,6 +6,7 @@ import coherent.practica.candyshop.model.Category;
 import coherent.practica.candyshop.model.CustomUserDetails;
 import coherent.practica.candyshop.service.CandyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
@@ -43,6 +44,7 @@ public class CandyController {
     @DeleteMapping("/{candyName}")
     @ResponseBody
     public ResponseEntity<String> deleteCandy(@PathVariable String candyName) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return candyService.deleteCandy(candyName);
     }
 

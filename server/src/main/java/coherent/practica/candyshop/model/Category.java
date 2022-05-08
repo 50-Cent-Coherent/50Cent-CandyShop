@@ -19,7 +19,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int categoryId;
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "category",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "category")
     private List<Candy> candyList = new ArrayList<>();
     private String name;
     private String description;
@@ -28,6 +28,7 @@ public class Category {
         this.name = name;
         this.description = description;
     }
+
 
     @Override
     public String toString() {

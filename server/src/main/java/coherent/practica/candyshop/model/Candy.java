@@ -28,7 +28,7 @@ public class Candy {
     private String photoUrl;
     private int quantity;
     private int price;
-    @OneToMany(mappedBy = "candy",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "candy")
     private List<WishlistCandy> WishlistAssoc = new ArrayList<>();
     @OneToMany(mappedBy = "candy",cascade = CascadeType.ALL)
     private List<OrderCandy> OrderAssoc = new ArrayList<>();
@@ -42,6 +42,7 @@ public class Candy {
         this.price = price;
 
     }
+
 
     @Override
     public String toString() {

@@ -29,7 +29,7 @@ public class UserData {
     @OneToOne
     @JoinColumn(name = "user_id",nullable = false)
     private User user;
-    @OneToMany(mappedBy = "userData",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userData")
     private List<Order> orders = new ArrayList<>();
 
     public UserData(String firstName, String secondName, String email, String address, String telephone, User user) {

@@ -39,12 +39,12 @@ public class CandyShopApplication {
     @PostConstruct
     public void runAfterObjectCreated(){
 
+        orderCandyRepository.deleteAll();
+        wishlistCandyRepository.deleteAll();
         candyRepository.deleteAll();
         categoryRepository.deleteAll();
         wishlistRepository.deleteAll();
         orderRepository.deleteAll();
-        orderCandyRepository.deleteAll();
-        wishlistCandyRepository.deleteAll();
         userDataRepository.deleteAll();
         userRepository.deleteAll();
 
@@ -66,6 +66,10 @@ public class CandyShopApplication {
         UserData testUserData1 = new UserData("tudor1","anita","gmail","address","0726",testUser1);
         userRepository.save(testUser1);
         userDataRepository.save(testUserData1);
+        User testUser2 = new User("password","RealAdmin","ROLE_ADMIN");
+        UserData testUserData2 = new UserData("tudor1","anita","gmail","address","0726",testUser2);
+        userRepository.save(testUser2);
+        userDataRepository.save(testUserData2);
 
 
         Wishlist testWishlist = new Wishlist("mywishlist",testUser);
@@ -76,6 +80,11 @@ public class CandyShopApplication {
         wishlistRepository.save(testWishlist1);
         WishlistCandy wishlistCandy1 = new WishlistCandy(testWishlist1,testCandy,5);
         wishlistCandyRepository.save(wishlistCandy1);
+        Wishlist testWishlist2 = new Wishlist("mywishlist2",testUser2);
+        wishlistRepository.save(testWishlist2);
+        WishlistCandy wishlistCandy2 = new WishlistCandy(testWishlist2,testCandy1,5);
+        wishlistCandyRepository.save(wishlistCandy2);
+
 
 
         Calendar calendar = Calendar.getInstance();

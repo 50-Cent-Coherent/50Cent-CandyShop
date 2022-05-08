@@ -8,10 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Repository
+@Transactional
 public interface CandyRepository extends JpaRepository<Candy,String> {
     Optional<Candy> findByName(String name);
-
+    void deleteByName(String name);
 }
