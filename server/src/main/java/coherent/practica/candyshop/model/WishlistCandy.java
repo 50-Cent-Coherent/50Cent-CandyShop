@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "wishlist_candies")
 public class WishlistCandy implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int WishlistCandyId;

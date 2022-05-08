@@ -1,7 +1,5 @@
 package coherent.practica.candyshop.model;
 
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "candy")
 public class Candy {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int candyId;
