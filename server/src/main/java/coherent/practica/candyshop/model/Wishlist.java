@@ -19,7 +19,7 @@ public class Wishlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int wishlistId;
-    @OneToMany(mappedBy = "wishlist",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "wishlist")
     private List<WishlistCandy> CandyAssoc = new ArrayList<>();
     private String name;
     @JsonIgnore
