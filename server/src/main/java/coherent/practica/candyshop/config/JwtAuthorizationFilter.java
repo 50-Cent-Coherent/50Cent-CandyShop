@@ -1,9 +1,12 @@
 package coherent.practica.candyshop.config;
 
 import coherent.practica.candyshop.model.CustomUserDetails;
+import coherent.practica.candyshop.model.User;
+import coherent.practica.candyshop.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,11 +23,13 @@ import java.io.IOException;
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
     JwtTokenGenerator jwtTokenGenerator;
     SecurityProperties securityProperties;
-
-    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, JwtTokenGenerator jwtTokenGenerator, SecurityProperties securityProperties) {
+    UserService userService;
+    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, JwtTokenGenerator jwtTokenGenerator, SecurityProperties securityProperties, UserService userService) {
         super(authenticationManager);
         this.jwtTokenGenerator = jwtTokenGenerator;
         this.securityProperties = securityProperties;
+        this.userService= userService;
+
     }
 
     @Override
@@ -46,8 +51,8 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
     private Authentication verifyJwtToken(String jwtToken) {
         String userName = jwtTokenGenerator.getAccountFromToken(jwtToken);
-
-        CustomUserDetails customUserDetails = new CustomUserDetails(userName);
+//        userService.findBYusername(username);
+        CustomUserDetails customUserDetails = new CustomUserDetails(userService.getUserByUsername(userName));
         return new UsernamePasswordAuthenticationToken(customUserDetails, null, customUserDetails.getAuthorities());
     }
 }
