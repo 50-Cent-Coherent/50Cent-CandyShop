@@ -1,5 +1,7 @@
 package coherent.practica.candyshop.config;
 
+import coherent.practica.candyshop.model.User;
+import coherent.practica.candyshop.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,10 +16,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     JwtTokenGenerator jwtTokenGenerator;
     SecurityProperties securityProperties;
+    UserService userService;
 
-    public WebSecurityConfig(JwtTokenGenerator jwtTokenGenerator, SecurityProperties securityProperties) {
+    public WebSecurityConfig(JwtTokenGenerator jwtTokenGenerator, SecurityProperties securityProperties, UserService userService) {
         this.jwtTokenGenerator = jwtTokenGenerator;
         this.securityProperties = securityProperties;
+        this.userService = userService;
     }
 
     @Override
@@ -31,10 +35,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/register").permitAll()
-                .antMatchers("/candies").hasRole("USER")
-                .antMatchers("/candies/{categoryName}").hasRole("USER")
+                .antMatchers("/candies").hasRole("ADMIN")
+                .antMatchers("/candies/**").hasRole("ADMIN")
                 .and()
-                .addFilter(new JwtAuthorizationFilter(authenticationManager(), jwtTokenGenerator, securityProperties));
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(), jwtTokenGenerator, securityProperties,userService));
     }
 
     // Function to encode the password

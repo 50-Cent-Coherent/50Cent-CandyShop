@@ -8,15 +8,15 @@ import java.util.Collection;
 import java.util.List;
 
 public class CustomUserDetails implements UserDetails {
-    private String username;
+    private User user;
 
-    public CustomUserDetails(String username) {
-        this.username = username;
+    public CustomUserDetails(User user) {
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        return List.of(new SimpleGrantedAuthority(user.getRole()));
     }
 
     @Override
@@ -24,9 +24,10 @@ public class CustomUserDetails implements UserDetails {
         return null;
     }
 
+
     @Override
     public String getUsername() {
-        return username;
+        return user.getUsername();
     }
 
     @Override

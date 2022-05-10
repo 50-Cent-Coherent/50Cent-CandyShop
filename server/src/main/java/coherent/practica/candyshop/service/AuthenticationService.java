@@ -28,9 +28,9 @@ public class AuthenticationService {
         User user = userRepository.findByUsername(loginRequest.getUsername())
                 .orElseThrow(()-> new UserNotFoundException(loginRequest.getUsername()));
         if (!bCryptPasswordEncoder.matches(loginRequest.getPassword(), user.getPassword()))
-            throw new InvalidLoginDetailsException();
+            throw new InvalidLoginDetailsException(loginRequest.getUsername());
 
-        CustomUserDetails customUserDetails = new CustomUserDetails(user.getUsername());
+        CustomUserDetails customUserDetails = new CustomUserDetails(user);
 
         return new LoginResponse(jwtTokenGenerator.generateTokenWithPrefix(customUserDetails));
     }
@@ -42,6 +42,7 @@ public class AuthenticationService {
         User user = new User();
         user.setUsername(loginRequest.getUsername());
         user.setPassword(bCryptPasswordEncoder.encode(loginRequest.getPassword()));
+        user.setRole("ROLE_USER");
         return userRepository.save(user);
     }
 }
