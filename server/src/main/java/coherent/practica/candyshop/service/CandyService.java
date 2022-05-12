@@ -57,7 +57,7 @@ public class CandyService {
                 () -> new CandyNotFoundException(candyName));
         orderCandyRepository.deleteByCandy(candy);
         wishlistCandyRepository.deleteByCandy(candy);
-        candyRepository.deleteByName(candyName);
+        candyRepository.delete(candy);
         return ResponseEntity.ok()
                 .body("Candy with name: " + candyName + " deleted successfully.");
     }
